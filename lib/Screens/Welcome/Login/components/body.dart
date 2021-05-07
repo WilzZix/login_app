@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:login_app/Screens/Welcome/Login/login_screen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:login_app/Screens/Welcome/Login/components/background.dart';
+import 'package:login_app/Screens/Welcome/SignUp/signup_screen.dart';
+import 'package:login_app/components/already_have_an_account.dart';
+import 'package:login_app/components/roundded_input_field.dart';
 import 'package:login_app/components/rounded_button.dart';
+import 'package:login_app/components/rounded_password_field.dart';
+import 'package:login_app/components/text_field_container.dart';
 import 'package:login_app/constants.dart';
 
-import 'background.dart';
-
 class Body extends StatelessWidget {
+  const Body({
+    Key key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -16,38 +23,44 @@ class Body extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Welcome to GYM',
+              'LOGIN',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(
               height: size.height * 0.03,
             ),
             SvgPicture.asset(
-              'assets/icons/chat.svg',
-              height: size.height * 0.45,
+              'assets/icons/login.svg',
+              height: size.height * 0.35,
             ),
             SizedBox(
               height: size.height * 0.03,
             ),
-            // ignore: deprecated_member_use
+            RoundedInputField(
+              hintText: "Your email",
+              onChanged: (value) {},
+            ),
+            RoundedPasswordField(
+              onChanged: (value) {},
+            ),
             RoundedButton(
-              text: 'LOGIN',
+              text: "LOGIN",
+              press: () {},
+            ),
+            SizedBox(
+              height: size.height * 0.03,
+            ),
+            AlreadyHaveAnAccount(
               press: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return LoginScreen();
+                      return SignUpScreen();
                     },
                   ),
                 );
               },
-            ),
-            RoundedButton(
-              text: 'LOGIN',
-              press: () {},
-              color: kPrimaryLightColor,
-              textColor: Colors.black,
             ),
           ],
         ),
